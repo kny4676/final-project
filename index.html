@@ -3,52 +3,86 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GeoVision | 공간정보 포털</title>
+<title>FireMap Korea</title>
 
 <style>
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:'Segoe UI',sans-serif;
+font-family:Arial,sans-serif;
+scroll-behavior:smooth;
 }
 
 body{
-background:#f4f7fa;
-color:#333;
+background:#f5f5f5;
 }
 
-header{
+nav{
+position:fixed;
+top:0;
+width:100%;
+background:#111;
+padding:15px;
+z-index:1000;
+}
+
+nav ul{
+display:flex;
+justify-content:center;
+gap:30px;
+list-style:none;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+font-weight:bold;
+}
+
+.hero{
 height:100vh;
-background:linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)),
-url('https://images.unsplash.com/photo-1469474968028-56623f02e42e');
+background:
+linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)),
+url('https://images.unsplash.com/photo-1511497584788-876760111969?q=80&w=1600');
 background-size:cover;
 background-position:center;
 display:flex;
+flex-direction:column;
 justify-content:center;
 align-items:center;
 text-align:center;
 color:white;
 }
 
-header h1{
-font-size:60px;
-margin-bottom:20px;
+.hero h1{
+font-size:70px;
 }
 
-header p{
+.hero p{
 font-size:24px;
+margin-top:15px;
+}
+
+.btn{
+margin-top:25px;
+padding:15px 30px;
+background:#ff5722;
+color:white;
+border:none;
+border-radius:10px;
+cursor:pointer;
+font-size:18px;
 }
 
 section{
-padding:80px 10%;
+padding:100px 10%;
 }
 
-.section-title{
+.title{
 text-align:center;
-font-size:36px;
+font-size:40px;
 margin-bottom:40px;
-color:#0a6ebd;
 }
 
 .cards{
@@ -63,21 +97,29 @@ padding:25px;
 border-radius:15px;
 box-shadow:0 5px 15px rgba(0,0,0,.1);
 transition:.3s;
+cursor:pointer;
 }
 
 .card:hover{
-transform:translateY(-8px);
+transform:translateY(-10px);
 }
 
-.project{
-background:white;
+.stats{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:20px;
+}
+
+.stat{
+background:#111;
+color:white;
 padding:30px;
 border-radius:15px;
-box-shadow:0 5px 15px rgba(0,0,0,.1);
+text-align:center;
 }
 
 footer{
-background:#0a6ebd;
+background:#111;
 color:white;
 text-align:center;
 padding:30px;
@@ -87,82 +129,133 @@ padding:30px;
 
 <body>
 
-<header>
-<div>
-<h1>GeoVision</h1>
-<p>공간정보와 빅데이터로 세상을 분석하다</p>
-</div>
-</header>
+<nav>
+<ul>
+<li><a href="#home">HOME</a></li>
+<li><a href="#risk">위험도</a></li>
+<li><a href="#region">지역분석</a></li>
+<li><a href="#dashboard">통계</a></li>
+<li><a href="#about">ABOUT</a></li>
+</ul>
+</nav>
 
-<section>
-<h2 class="section-title">GIS 활용 분야</h2>
+<section class="hero" id="home">
+<h1>🔥 FireMap Korea</h1>
+<p>대한민국 산불 위험도 분석 플랫폼</p>
+
+<button class="btn"
+onclick="document.getElementById('risk').scrollIntoView()">
+위험도 조회하기
+</button>
+</section>
+
+<section id="risk">
+
+<h2 class="title">산불 위험도 조회</h2>
+
+<div class="cards">
+
+<div class="card"
+onclick="alert('강원도 위험도 : 매우 높음\\n발생확률 : 82%')">
+🌲 강원도
+</div>
+
+<div class="card"
+onclick="alert('경상북도 위험도 : 높음\\n발생확률 : 75%')">
+🌳 경상북도
+</div>
+
+<div class="card"
+onclick="alert('전라남도 위험도 : 보통\\n발생확률 : 52%')">
+🌿 전라남도
+</div>
+
+<div class="card"
+onclick="alert('경기도 위험도 : 낮음\\n발생확률 : 31%')">
+🏙️ 경기도
+</div>
+
+</div>
+
+</section>
+
+<section id="region">
+
+<h2 class="title">지역별 분석</h2>
 
 <div class="cards">
 
 <div class="card">
-<h3>🛰️ 위성영상 분석</h3>
-<p>위성 데이터를 활용한 환경 및 국토 분석</p>
+<h3>강원도</h3>
+<p>산림 비율이 높고 건조한 날씨로 산불 위험이 큼.</p>
 </div>
 
 <div class="card">
-<h3>🚗 자율주행</h3>
-<p>정밀 지도 기반 위치정보 서비스</p>
+<h3>경상북도</h3>
+<p>최근 5년간 대형 산불 발생 빈도가 높음.</p>
 </div>
 
 <div class="card">
-<h3>🌊 재난관리</h3>
-<p>홍수, 산불 등 재난 예측 및 대응</p>
-</div>
-
-<div class="card">
-<h3>🏙️ 스마트시티</h3>
-<p>도시 데이터를 활용한 스마트 행정</p>
+<h3>전라남도</h3>
+<p>농업 활동과 연계된 화재 발생 가능성 존재.</p>
 </div>
 
 </div>
+
 </section>
 
-<section>
-<h2 class="section-title">프로젝트</h2>
+<section id="dashboard">
 
-<div class="project">
-<h3>인천시 폐의약품 수거함 밀도 분석</h3>
+<h2 class="title">통계 대시보드</h2>
+
+<div class="stats">
+
+<div class="stat">
+<h1>421</h1>
+<p>연간 산불 발생</p>
+</div>
+
+<div class="stat">
+<h1>13,000ha</h1>
+<p>피해 면적</p>
+</div>
+
+<div class="stat">
+<h1>강원도</h1>
+<p>최다 발생 지역</p>
+</div>
+
+</div>
+
+</section>
+
+<section id="about">
+
+<h2 class="title">About Project</h2>
+
+<div class="card">
+
+<h3>FireMap Korea</h3>
+
 <br>
+
 <p>
-QGIS를 활용하여 인천시 폐의약품 수거함 위치 데이터를 분석하였다.
-밀도 분석을 통해 지역별 분포 특성을 파악하고
-공공 서비스 개선 방안을 도출하였다.
+공간정보와 GIS 기술을 활용한
+대한민국 산불 위험도 분석 플랫폼입니다.
+
+본 웹사이트는 공간정보빅데이터 분야의
+활용 사례를 소개하기 위해 제작되었습니다.
 </p>
-</div>
 
-</section>
-
-<section>
-<h2 class="section-title">사용 기술</h2>
-
-<div class="cards">
-
-<div class="card">QGIS</div>
-<div class="card">ArcGIS</div>
-<div class="card">Python</div>
-<div class="card">SQL</div>
-<div class="card">GeoServer</div>
-
-</div>
-
-</section>
-
-<section>
-<h2 class="section-title">나의 목표</h2>
-
-<div class="project">
-공간정보 개발자가 되어 GIS와 AI를 결합한 서비스를 개발하고 싶습니다.
 </div>
 
 </section>
 
 <footer>
-2026 GeoVision | 공간정보빅데이터과 김나연
+
+2026 FireMap Korea<br>
+공간정보빅데이터과 김나연
+
 </footer>
 
 </body>
